@@ -1,4 +1,5 @@
 class Note:
+    """ MIDI note object """
     notes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
     def __init__( self, v ):
         if type(v) == int:
@@ -7,9 +8,11 @@ class Note:
             self.s = v
     @property
     def n(self):
+        """ returns note in MIDI value format """
         return self._n
     @n.setter
     def n(self, value):
+        """ sets from MIDI value format """
         self._n = value
     @property
     def s(self):
