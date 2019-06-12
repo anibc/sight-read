@@ -11,9 +11,11 @@ import mido
 inputname = next(( s for s in mido.get_input_names() if s[ -1 ] == '0' and s[ :3 ] == 'V61' ))
 # inputname = 'V61:V61 MIDI 1 28:0'
 
-class SightWidget( Widget ):
+class SightRootWidget( Widget ):
+    pass
+class SheetView( Widget ):
     def __init__( self, **kwargs ):
-        super(SightWidget, self).__init__(**kwargs)
+        super(SheetView, self).__init__(**kwargs)
         self.notes = []
         self.ref = self.getRandNote()
         self.bind( on_size=self.showLines )
@@ -59,8 +61,7 @@ class SightWidget( Widget ):
 class SightApp(App):
 
     def build(self):
-        sw = SightWidget()
-        return sw
+        return SightRootWidget()
 
 
 if __name__ == '__main__':
