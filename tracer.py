@@ -9,6 +9,7 @@ import random as rand
 from note import Note
 import mido
 inputname = next(( s for s in mido.get_input_names() if s[ -1 ] == '0' and s[ :3 ] == 'V61' ))
+# inputname = mido.get_input_names()[ 0 ]
 # inputname = 'V61:V61 MIDI 1 28:0'
 
 class SightRootWidget( Widget ):
