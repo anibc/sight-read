@@ -1,4 +1,3 @@
-from kivy.app import App
 from kivy.core.window import Window
 from kivy.uix.layout import Layout
 from kivy.uix.widget import Widget
@@ -8,8 +7,8 @@ from kivy.graphics import *
 import random as rand
 from note import Note
 import mido
-inputname = next(( s for s in mido.get_input_names() if s[ -1 ] == '0' and s[ :3 ] == 'V61' ))
-# inputname = mido.get_input_names()[ 0 ]
+# inputname = next(( s for s in mido.get_input_names() if s[ -1 ] == '0' and s[ :3 ] == 'V61' ))
+inputname = mido.get_input_names()[ 0 ]
 # inputname = 'V61:V61 MIDI 1 28:0'
 
 class SheetView( Widget ):
@@ -57,14 +56,3 @@ class SheetView( Widget ):
     def getRandNote( self ):
         return Note( str( rand.choice( list( range(4,6) ) ) ) + chr( rand.choice( list( range(7) ) ) + ord('A') ) )
 
-class SightRootWidget( Widget ):
-    pass
-
-class SightApp(App):
-
-    def build(self):
-        return SightRootWidget()
-
-
-if __name__ == '__main__':
-    SightApp().run()
