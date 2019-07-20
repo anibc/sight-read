@@ -1,16 +1,4 @@
-from kivy.app import App
-from kivy.uix.widget import Widget
-
-from sheetview import SheetView
-
-class SightRootWidget( Widget ):
-    pass
-
-class SightApp(App):
-
-    def build(self):
-        return SightRootWidget()
-
+from sightread.kv.sightapp import SightApp
 
 if __name__ == '__main__':
     SightApp().run()
