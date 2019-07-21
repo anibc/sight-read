@@ -7,8 +7,8 @@ from kivy.graphics import *
 import random as rand
 from note import Note
 import mido
-inputname = next(( s for s in mido.get_input_names() if s[ -1 ] == '0' and s[ :3 ] == 'V61' ))
-# inputname = mido.get_input_names()[ 0 ]
+# inputname = next(( s for s in mido.get_input_names() if s[ -1 ] == '0' and s[ :3 ] == 'V61' ))
+inputname = mido.get_input_names()[ 0 ]
 # inputname = 'V61:V61 MIDI 1 28:0'
 
 class SheetView( Widget ):
@@ -32,11 +32,13 @@ class SheetView( Widget ):
     def showLines(self):
         with self.canvas.before:
             Color(.8,.8,.8,1)
-            Rectangle( pos=self.pos, size=(2000,1000) )
+            Rectangle( pos=self.pos, size=(2000,500) )
             Color(0,0,0,.8)
             for i in range(1, 7 * 9 + 1, 2 ):
                 h = self.lineHeight( i )
                 Line(points=(0, h, 2000, h), width=1.1)
+            Color( 1, 0, 1, 0.5 )
+            Rectangle( pos=self.pos, size=self.size )
     def showNotes(self):
         s = 10
         self.canvas.clear()
