@@ -5,11 +5,16 @@ from kivy.uix.label import Label
 from kivy.graphics import *
 
 import random as rand
-from note import Note
+from sightread.note import Note
 import mido
-# inputname = next(( s for s in mido.get_input_names() if s[ -1 ] == '0' and s[ :3 ] == 'V61' ))
-inputname = mido.get_input_names()[ 0 ]
-# inputname = 'V61:V61 MIDI 1 28:0'
+
+def midoinputname():
+    gen = ( s for s in mido.get_input_names() if s[ -1 ] == '0' and s[ :3 ] == 'V61' )
+    try:
+        inputname = next( gen )
+    except StopIteration as e:
+        inputname = mido.get_input_names()[ 0 ]
+    return inputname
 
 class SheetView( Widget ):
     def __init__( self, **kwargs ):
@@ -18,7 +23,7 @@ class SheetView( Widget ):
         self.ref = self.getRandNote()
         self.bind( on_size=self.showLines )
         self.showLines()
-        self.midi = mido.open_input(inputname, callback=self.midiUpdate)
+        self.midi = mido.open_input(midoinputname(), callback=self.midiUpdate)
     def midiUpdate(self, msg):
         if msg.type == 'note_on':
             self.notes.append( msg.note )
