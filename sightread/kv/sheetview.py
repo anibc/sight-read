@@ -1,4 +1,6 @@
 from kivy.core.window import Window
+from kivy.uix.label import Label
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.layout import Layout
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
@@ -16,7 +18,7 @@ def midoinputname():
         inputname = mido.get_input_names()[ 0 ]
     return inputname
 
-class SheetView( Widget ):
+class SheetView( FloatLayout ):
     def __init__( self, **kwargs ):
         super(SheetView, self).__init__(**kwargs)
         self.notes = []
@@ -35,9 +37,14 @@ class SheetView( Widget ):
         self.showNotes()
         self.canvas.ask_update()
     def showLines(self):
+        self.canvas.before.clear()
         with self.canvas.before:
             Color(.8,.8,.8,1)
             Rectangle( pos=self.pos, size=(2000,500) )
+            Color(*[1]*4)
+            for i in range( 0, 130, 12 ):
+                h = self.lineHeight( i )
+                Line(points=(0,h,2000,h), width=3)
             Color(0,0,0,.8)
             for i in range(1, 7 * 9 + 1, 2 ):
                 h = self.lineHeight( i )
