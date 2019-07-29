@@ -28,6 +28,7 @@ class SheetView( FloatLayout ):
         self.midi = mido.open_input(midoinputname(), callback=self.midiUpdate)
     def midiUpdate(self, msg):
         if msg.type == 'note_on':
+            print( msg.note )
             self.notes.append( msg.note )
             if self.ref.n == msg.note:
                 while self.ref.n == msg.note:
@@ -46,7 +47,7 @@ class SheetView( FloatLayout ):
                 h = self.lineHeight( i )
                 Line(points=(0,h,2000,h), width=3)
             Color(0,0,0,.8)
-            for i in range(1, 7 * 9 + 1, 2 ):
+            for i in range( 43, 78, 2 ):
                 h = self.lineHeight( i )
                 Line(points=(0, h, 2000, h), width=1.1)
             Color( 1, 0, 1, 0.5 )
@@ -61,11 +62,9 @@ class SheetView( FloatLayout ):
             Color( 1, 0, 0, 1 )
             Ellipse(pos=(600, self.lineHeight(self.ref)-s/2), size=(s,s))
     def lineHeight(self, i):
-        if type(i) == Note:
-            t = i.n // 12
-            m = ( ord( Note.notes[ i.n % 12 ][0] ) - ord('C') + 7 ) % 7
-            i = t * 7 + m
-        return i * 4 + 75 + 25 * ( i // 36 )
+        if type( i ) == Note:
+            i = i.white().n
+        return i * 4 + 15 + 25 * ( i // 60 )
     def getRandNote( self ):
         return Note( str( rand.choice( list( range(4,6) ) ) ) + chr( rand.choice( list( range(7) ) ) + ord('A') ) )
 
