@@ -64,7 +64,9 @@ class SheetView( FloatLayout ):
     def lineHeight(self, i):
         if type( i ) == Note:
             i = i.white().n
-        return i * 4 + 15 + 25 * ( i // 60 )
+        else:
+            i = Note( i ).white().n
+        return i * 4 + 15 + ( 50 if i > 60 else ( 25 if i == 60 else 0 ) )
     def getRandNote( self ):
         return Note( str( rand.choice( list( range(4,6) ) ) ) + chr( rand.choice( list( range(7) ) ) + ord('A') ) )
 
