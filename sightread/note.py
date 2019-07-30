@@ -26,6 +26,8 @@ class Note:
         first, second = value[ :ind ], value[ ind: ]
         mod = notes.index( second )
         self.n = int( first ) * 12 + mod
+    def isWhite( self ):
+        return self.s[ -1 ] != 'b'
     def white( self ):
         return Note( self.s[:-1] if self.s[ -2 ].isalpha() else self.s )
 

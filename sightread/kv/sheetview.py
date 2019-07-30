@@ -47,7 +47,7 @@ class SheetView( FloatLayout ):
                 h = self.lineHeight( i )
                 Line(points=(0,h,2000,h), width=3)
             Color(0,0,0,.8)
-            for i in range( 43, 78, 2 ):
+            for i in [ Note( i ) for i in range( 43, 78 ) if Note( i ).isWhite() ][::2]:
                 h = self.lineHeight( i )
                 Line(points=(0, h, 2000, h), width=1.1)
             Color( 1, 0, 1, 0.5 )
