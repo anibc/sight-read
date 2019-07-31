@@ -28,7 +28,6 @@ class SheetView( FloatLayout ):
         self.midi = mido.open_input(midoinputname(), callback=self.midiUpdate)
     def midiUpdate(self, msg):
         if msg.type == 'note_on':
-            print( msg.note )
             self.notes.append( msg.note )
             if self.ref.n == msg.note:
                 while self.ref.n == msg.note:
