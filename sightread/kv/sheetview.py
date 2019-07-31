@@ -42,7 +42,7 @@ class SheetView( FloatLayout ):
             Color(.8,.8,.8,1)
             Rectangle( pos=self.pos, size=(2000,500) )
             Color(*[1]*4)
-            for i in range( 0, 130, 12 ):
+            for i in range( 48, 73, 12 ):
                 h = self.lineHeight( i )
                 Line(points=(0,h,2000,h), width=3)
             Color(0,0,0,.8)
