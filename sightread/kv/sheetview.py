@@ -49,8 +49,6 @@ class SheetView( FloatLayout ):
             for i in [ Note( i ) for i in range( 43, 78 ) if Note( i ).isWhite() ][::2]:
                 h = self.lineHeight( i )
                 Line(points=(0, h, 2000, h), width=1.1)
-            Color( 1, 0, 1, 0.5 )
-            Rectangle( pos=self.pos, size=self.size )
     def showNotes(self):
         s = 10
         self.canvas.clear()
